@@ -118,7 +118,9 @@ public class Date {
 	public boolean isSameIF(Date fecha2){
 
 		boolean esMismaFecha;
-		//miro a ver si metendo la fecha 2 en mi metodo que comprueba si es o no igual, sale true 
+
+		//miro a ver si metiendo la fecha 2 en mi metodo que comprueba si es o no igual, sale true 
+
 		if(isSameDayIF(fecha2) == true && isSameMonthIF(fecha2) == true && this.year==fecha2.year){
 			esMismaFecha = true;
 		}
@@ -173,8 +175,7 @@ public class Date {
 	public boolean isSame(Date fecha2){
 
 		return this.isSameYear(fecha2) && this.isSameMonth(fecha2) && this.isSameDay(fecha2); 
-		//porque llamo a los metodos con la fecha de hoy, ese this es como si pusiera today.metodo
-
+		
 	}
 
 
@@ -343,7 +344,215 @@ Lo creo con if else, si no, bastaría con poner la condición "this.day <= this.
 
 
 
+//MÉTODOS DE LA TRANSPARENCIA 3:
 
+	/*
+	El método me devuelve el nombre de los meses restantes desde el intoducido (no se incluye) hasta el final del año.
+	
+	*/
+
+	public String mesesRestantes(){
+
+		Stringbuffer meses=new Stringbuffer();
+
+		//recorrer todos los meses desde el introducido+1 porque el que introduzco no quiero que me lo anexe a la cadena.
+
+		for(int i = this.month+1; i<=12; i++){ 
+
+			switch(i){
+				case 1:
+					meses.append("Enero, ");
+					break;
+				case 2:
+					meses.append("Febrero, ");
+					break;
+				case 3:
+					meses.append("Marzo, ");
+					break;
+				case 4:
+					meses.append("Abril, ");
+					break;
+				case 5:
+					meses.append("Mayo, ");
+					break;
+				case 6:
+					meses.append("Junio, ");
+					break;
+				case 7:
+					meses.append("Julio, ");
+					break;
+				case 8:
+					meses.append("Agosto, ");
+					break;
+				case 9:
+					meses.append("Septiembre, ");
+					break;
+				case 10:
+					meses.append("Octubre, ");
+					break;
+				case 11:
+					meses.append("Noviembre, ");
+					break;
+				case 12:
+					meses.append("Diciembre, ");
+					break;
+
+
+
+
+			}
+			return meses;
+		}
+
+	/*
+	
+	El método imprime la fecha en formato de cadena.
+
+	*/
+
+	public void fechaEscrita(){
+
+		Stringbuffer fecha=new Stringbuffer();
+
+		fecha.append(this.day+"/");
+		fecha.append(this.month+"/");
+		fecha.append(this.year);
+
+		System.out.println(fecha.toString());
+	}
+
+	/*
+	
+	El método genera todas las fechas desde la fecha establecida hasta la ultima fecha del mes, para ello, se vale del método auxiliar que hemos creado y que nos dice el ultimo dia del mes, y del método que convierte la fecha en cadena de texto y la muestra por pantalla.
+
+	*/
+	
+	public void ultimaFechaMes(){
+
+		int ultimoDia;
+
+		ultimoDia = this.ultimoDiaMes(this.month);
+		//recorrerá todos los dias desde el que introduzco (excluido) hasta el ultimo del mes y los imprimirá.
+
+		for(i = this.day+1; i <=ultimoDia; i++ ){
+				
+			//como el dia de la fecha que imprimo es i; si llamo al metodo de fecha escrita me va a coger el dia de mi fecha en lugar de i, necesito entonces crear otra fecha.
+
+			Date fechax = new Date(i, this.month, this.year);
+			fechax.fechaEscrita();
+
+
+		}
+
+	}
+
+	/*
+
+	Método que retorna los meses con el mismo numero de dias que el mes de mi fecha.
+	Recorre todos los meses a ver cuales tienen los mismos dias que el de mi fecha, y los imprime.
+	*/
+
+	public void mesesIguales(){
+	
+	//Con el for recorro todos los meses
+
+	for(int i = 1; i<=12; i++){
+
+		//Pongo este if para que no me imprima mi mismo mes al recorrerlos todos.
+
+		if(i!=this.month) {
+
+			//llamo al metodo auxiliar que me dice el ultimo día del mes. Le paso de parametro mi mes, para que me diga los dias de mi mes y le paso como parametro el mes i del bucle que recorre todos los meses.
+
+			if(ultimoDiaMes(this.month) == ultimoDiaMes(i)){
+				switch(i){
+					case 1:
+						System.out.println("Enero");
+						break;
+					case 2:
+						System.out.println("Febrero");
+						break;
+					case 3:
+						System.out.println("Marzo");
+						break;
+					case 4:
+						System.out.println("Abril");
+						break;
+					case 5:
+						System.out.println("Mayo");
+						break;
+					case 6:
+						System.out.println("Junio");
+						break;
+					case 7:
+						System.out.println("Julio");
+						break;
+					case 8:
+						System.out.println("Agosto");
+						break;
+					case 9:
+						System.out.println("Septiembre");
+						break;
+					case 10:
+						System.out.println("Octubre");
+						break;
+					case 11:
+						System.out.println("Noviembre");
+						break;
+					case 12:
+						System.out.println("Diciembre");
+						break;
+							
+							
+				}
+			}	
+		}
+
+	}	
+	}
+
+
+	public void numeroDiasDesdeInicioAño() {
+		int numeroDias=0;
+
+		//El contador va desde el mes 1 (Enero) hasta el anterior a mi mes (que son los meses completos) y mira a ver cuantos dias tienen esos meses y los suma al contador.
+
+		for(int i=1; i<this.month; i++) {
+			numeroDias = numeroDias + ultimoDiaMes(i);
+		}
+
+		//Ahora a ese contador en el que estan sumados los dias de los meses completos tenemos que sumar los dias correspondientes al mes de nuestra fecha
+
+		numeroDias = numeroDias + this.day;
+		System.out.println("El numero de dias desde el 1 de Enero hasta mi fecha es: "+numeroDias);
+		
+	}
+
+
+
+
+	
+
+	
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+	
+	
 
 
 
