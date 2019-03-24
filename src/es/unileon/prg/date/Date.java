@@ -119,7 +119,7 @@ public class Date {
 
 		boolean esMismaFecha;
 
-		//miro a ver si metiendo la fecha 2 en mi metodo que comprueba si es o no igual, sale true 
+		//miro a ver si metiendo la fecha 2 en mi metodo que comprueba si es o no igual, sale true.
 
 		if(isSameDayIF(fecha2) == true && isSameMonthIF(fecha2) == true && this.year==fecha2.year){
 			esMismaFecha = true;
@@ -243,7 +243,7 @@ public class Date {
 
 	Le paso como parámetro un mes genérico porque si no le pongo nada solo podría obtener el ultimo dia del mes de mi fecha, pero siendo así ese "int mes" generico tomará un valor u otro según que fecha lo llame. 
 
-	"Treinta días trae noviembre, con abril, junio y septiembre. Los demás treinta y uno, menos febrero mocho que trae veintiocho"
+	"Treinta días trae noviembre, con abril, junio y septiembre. Los demás treinta y uno, menos febrero mocho que trae veintiocho".
 
 	*/
 
@@ -454,11 +454,11 @@ Lo creo con if else, si no, bastaría con poner la condición "this.day <= this.
 
 	public void mesesIguales(){
 	
-	//Con el for recorro todos los meses
+	//Con el for recorro todos los meses.
 
 	for(int i = 1; i<=12; i++){
 
-		//Pongo este if para que no me imprima mi mismo mes al recorrerlos todos.
+		//Pongo este if para que no me imprima mi mismo mes al recorrerlos todos. En la iteración que coincida con mi mes no ejecuta y pasa a la siguiente iteración.
 
 		if(i!=this.month) {
 
@@ -521,7 +521,7 @@ Lo creo con if else, si no, bastaría con poner la condición "this.day <= this.
 			numeroDias = numeroDias + ultimoDiaMes(i);
 		}
 
-		//Ahora a ese contador en el que estan sumados los dias de los meses completos tenemos que sumar los dias correspondientes al mes de nuestra fecha
+		//Ahora a ese contador en el que estan sumados los dias de los meses completos tenemos que sumar los dias correspondientes al mes de nuestra fecha.
 
 		numeroDias = numeroDias + this.day;
 		System.out.println("El numero de dias desde el 1 de Enero hasta mi fecha es: "+numeroDias);
@@ -531,62 +531,102 @@ Lo creo con if else, si no, bastaría con poner la condición "this.day <= this.
 
 
 
-	
+//MÉTODOS TRANSPARENCIA 4:
 
-	
-
-
+	/**
 
 
+	*/
+
+	public void numeroIntentos(){
+		Random rnd = new Random();
+		int intentos=0;
+		int mesAleatorio=0;
+		int diaAleatorio=0;
+
+		//mientras que los dias y meses creados sean distintos de los de la fecha que meto me seguira creando un mes y un dia (un intento) y contándomelo.
+
+		while(diaAleatorio != this.day || mesAleatorio != this.month){
+			mesAleatorio = rnd.nextInt(12)+1; //el +1 es porque por defecto los crearía entre 0 y 11 y los quiero crear entre 1 y 12.
+			diaAleatorio = rnd.nextInt(ultimoDiaMes(mesAleatorio))+1;
+			intentos++;
+		}
+		System.out.println("El numero de intentos necesarios serían: "+intentos);
+
+	}
 
 
+	public void numeroIntentosDW() {
 
-	
+//con el do while entra directamente a generar numeros aleatorios sin chequear la condicion entonces no me hace falta plantear el caso inicial de 0 para el mes y dia.
 
+		Random rnd = new Random();
+		int intentos=0;//porque ya entra a ejecutar el codigo y ya me suma 1 en la primera
+		int mesAleatorio;
+		int diaAleatorio;
+		do {
+			intentos++;
+			mesAleatorio = rnd.nextInt(12)+1; 
+			diaAleatorio = rnd.nextInt(ultimoDiaMes(mesAleatorio))+1;
+			
+		}while(diaAleatorio != this.day || mesAleatorio != this.month);
+			
+		System.out.println("El numero de intentos necesarios serían: "+intentos);
+	}
 
+// metodo auxiliar para el ultimo que me diga ese resto de la division modulo 7 a qué día de la semana se corresponde.
 
+	public String NombreDelDia(int i) {
 
+		String dia = "";
+		switch(i) {
+		case 1:
+			dia = "lunes";
+			break;
+		case 2:
+			dia = "Martes";
+			break;
+		case 3:
+			dia = "Miercoles";
+			break;
+		case 4:
+			dia = "Jueves";
+			break;
+		case 5:
+			dia = "Viernes";
+			break;
+		case 6:
+			dia = "Sábado";
+			break;
+		case 0:
 
+//Porque si divido y me da resto cero quiere decir que han pasado justo esas semanas pero no he empezado la siguiente semana, luego estoy en domingo.
 
+			dia = "Domingo";
+			break;
+		
+		}
+	return dia;
+	}
 
+//lo que hace es decirme el numero de dias que hay desde el uno de enero hasta fecha actual
 
+	public void DiaSemanaHoy(int dia1Enero) {
+		int numeroDias=0;
+		for(int i=1; i<this.month; i++) {
+			numeroDias= numeroDias + ultimoDiaMes(i);
+		}
+		numeroDias = numeroDias + this.day;
+		numeroDias = numeroDias + dia1Enero -1; 
 
-	
-	
+//hay que poner esto porque sino estas prefijando que el año empieza en lunes 1 y puede que el año empiece en miércoles 1. Los días entre la fecha y el día 1 se ven inalterados, pero si hacemos la división modulo 7 sale en los dos casos lo mismo y no es posible. Si pintamos en un papel los dos casos y hacemos el calendario veremos que la diferencia del día final entre empezar un lunes 1 y un miércoles 1 es de 2 días. Según nuestro método anterior, el lunes es la posición 1 de la semana y el miércoles es la posición 3 pero queremos que al número de días totales le sume 2 no 3, luego de ahí el -1.
 
+		int diaSemana = numeroDias%7;
 
+//esos dias que hay entre medias del primer dia de la primera semana del año y mi fecha los divido entre siete para saber las semanas que han sido (los ciclos completos) y el resto que es el dia de la semana en el que estoy realmente (la posicion en el ciclo siguiente) que será el que meteré en el otro método y me dirá a qué día de la semana se corresponde.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+		System.out.println("hoy es: "+NombreDia(diaSemana));
+		
+		
+	}
 }
