@@ -425,9 +425,8 @@ public class Date {
 				case 12:
 					meses.append("Diciembre, ");
 					break;
-
-
-
+				default: 
+					meses.append("");	
 
 			}
 			return meses;
@@ -594,7 +593,7 @@ public class Date {
 			diaAleatorio = rnd.nextInt(ultimoDiaMes(mesAleatorio))+1;
 			intentos++;
 		}
-		System.out.println("El numero de intentos necesarios serían: "+intentos);
+		System.out.println("El numero de intentos necesarios para generar la fecha serían: "+intentos);
 
 	}
 
@@ -620,7 +619,7 @@ public class Date {
 			
 		}while(diaAleatorio != this.day || mesAleatorio != this.month);
 			
-		System.out.println("El numero de intentos necesarios serían: "+intentos);
+		System.out.println("El numero de intentos necesarios para generar la fecha serían: "+intentos);
 	}
 
 	/**
@@ -666,19 +665,20 @@ public class Date {
 	}
 
 	/**
-	 * Método que imprime el número de dias que hay desde el uno de enero hasta fecha actual.
+	 * Método que imprime el día de la semana de mi fecha sabiendo el primer día de la primera semana del año.
 	 * 
-	 * 	  
-	 * No se le pasa nada como parámetros puesto que solo usa los atributos de la clase.	
+	 * @param diaUnoEnero
+	 *           El día de la semana en el que empieza el año (1-lunes; 2-martes...; 0-Domingo)	  
+	 * 	
 	 */
 	
-	public void DiaSemanaHoy(int dia1Enero) {
+	public void DiaSemanaHoy(int diaUnoEnero) {
 		int numeroDias=0;
 		for(int i=1; i<this.month; i++) {
 			numeroDias= numeroDias + ultimoDiaMes(i);
 		}
 		numeroDias = numeroDias + this.day;
-		numeroDias = numeroDias + dia1Enero -1; 
+		numeroDias = numeroDias + diaUnoEnero -1; 
 
 		//hay que poner esto porque sino estas prefijando que el año empieza en lunes 1 y puede que el año empiece en miércoles 1. Los días entre la fecha y el día 1 se ven inalterados, pero si hacemos la división modulo 7 sale en los dos casos lo mismo y no es posible. Si pintamos en un papel los dos casos y hacemos el calendario veremos que la diferencia del día final entre empezar un lunes 1 y un miércoles 1 es de 2 días. Según nuestro método anterior, el lunes es la posición 1 de la semana y el miércoles es la posición 3 pero queremos que al número de días totales le sume 2 no 3, luego de ahí el -1.
 

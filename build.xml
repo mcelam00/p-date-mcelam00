@@ -1,67 +1,30 @@
 <?xml version="1.0"?>
 
-<project name="Date" basedir="." default="todo">
+<project name="Clase Date" basedir="." default="todo">
     <property name="src" value="src"/>
-    <property name="lib" value="lib"/>
     <property name="classes" value="classes"/>
-    <property name="dist" value="dist"/>
-    <property name="doc" value="doc"/>
     <property name="conf" value="etc"/>
 
-    <property name="paquetes" value="es.unileon.prg.Date.*"/>
-    <property name="titulo" value="Un ejemplo completo"/>
+    <property name="paquetes" value="es.unileon.prg.date"/>
 
-    <target name="limpiar">
+    <target name="clean">
       <delete dir="${classes}"/>
-      <delete dir="${doc}"/>
-      <delete dir="${dist}"/>
-      <delete file="${conf}/log.txt"/>
-      <delete file="${src}/LEEME.txt"/>
     </target>
 
-    <target name="compilar" depends="limpiar">
+    <target name="compile" depends="clean">
       <mkdir dir="${classes}"/>
-      <mkdir dir="${conf}"/>
-      <javac srcdir="${src}" destdir="${classes}" classpath="${lib}"
-         verbose="false" debug="false"/>
-      <echo message="Compilacion terminada"
-         file="${conf}/log.txt"/>
+      <javac includeantruntime="false" srcdir="${src}" destdir="${classes}"/>
+      <echo message="Compiling...done"/>
     </target>
 
-    <target name="documentar">
-      <mkdir dir="${doc}"/>
-      <javadoc sourcepath="${src}" classpath="${lib}"
-         packagenames="${paquetes}"
-         destdir="${doc}"
-         verbose="true" author="true"
-         access="private" splitindex="true" version="true"
-         windowtitle="${titulo}" doctitle="${titulo}"/>
-    </target>
-
-    <target name="distribuir">
-      <mkdir dir="${dist}"/>
-      <jar destfile="${dist}/bar.jar" basedir="${classes}"
-         compress="true">
-         <manifest>
-             <attribute name="Main-Class"
-             value="es.unileon.prg1.bar.PruebaMenuPrincipal"/>
-         </manifest>
-      </jar>
-      <copy file="LEEME.txt" todir="${src}"/>
-      <zip zipfile="${dist}/bar_src.zip" basedir="${src}"
-         compress="true"/>
-    </target>
-
-    <target name="probar" depends="compilar">
+    <target name="run" depends="compile">
       <java classname="es.unileon.prg.date.MainDate">
          <classpath>
               <pathelement path="${classes}"/>
-              <pathelement path="${lib}"/>
          </classpath>
-	 <arg value="Pepe"/>
       </java>
     </target>
 
-    <target name="todo" depends=" probar"/>
+    <target name="todo" depends="run"/>
 
 </project>
