@@ -6,8 +6,8 @@ public class MainDate {
 
 		Date today, otraFecha; //declaro la variable de tipo date, la inicializare en el try
 		try {
-			today = new Date(22,3,2019);// aquí las inicializo 
-			otraFecha = new Date(20,3,2018);
+			today = new Date(25,2,2019);// aquí las inicializo 
+			otraFecha = new Date(25,2,2019);
 			System.out.println("¿Tienen el mismo año?");
 			System.out.println(today.isSameYearIF(otraFecha));
 															
@@ -62,11 +62,11 @@ public class MainDate {
 
 			today.numeroIntentos();
 
-			System.out.println("¿Es la misma fecha (simplificado)?");
+		
 			today.numeroIntentosDW();
 
 			System.out.println("¿Qué día de la semana es hoy?");
-			today.DiaSemanaHoy(3);
+			today.DiaSemanaHoy(2);
 			
 		
 		} catch (DateException e) {

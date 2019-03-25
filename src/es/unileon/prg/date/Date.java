@@ -1,4 +1,5 @@
 package es.unileon.prg.date;
+import java.util.Random;
 
 /**
  * Clase Fecha.
@@ -382,7 +383,7 @@ public class Date {
 	
 	public String mesesRestantes(){
 
-		Stringbuffer meses=new Stringbuffer();
+		StringBuffer meses=new StringBuffer();
 
 		//recorrer todos los meses desde el introducido+1 porque el que introduzco no quiero que me lo anexe a la cadena.
 
@@ -429,8 +430,10 @@ public class Date {
 					meses.append("");	
 
 			}
-			return meses;
+			
 		}
+		return meses.toString();	
+	}
 
 	/**
 	 * Método que imprime la fecha en formato de cadena.
@@ -441,7 +444,7 @@ public class Date {
 	
 	public void fechaEscrita(){
 
-		Stringbuffer fecha=new Stringbuffer();
+		StringBuffer fecha=new StringBuffer();
 
 		fecha.append(this.day+"/");
 		fecha.append(this.month+"/");
@@ -458,14 +461,14 @@ public class Date {
 	 * No se le pasa nada como parámetros puesto que solo usa los atributos de la clase.	
 	 */
 		
-	public void ultimaFechaMes(){
+	public void ultimaFechaMes() throws DateException{
 
 		int ultimoDia;
 
 		ultimoDia = this.ultimoDiaMes(this.month);
 		//recorrerá todos los dias desde el que introduzco (excluido) hasta el ultimo del mes y los imprimirá.
 
-		for(i = this.day+1; i <=ultimoDia; i++ ){
+		for(int i = this.day+1; i <=ultimoDia; i++ ){
 				
 			//como el dia de la fecha que imprimo es i; si llamo al metodo de fecha escrita me va a coger el dia de mi fecha en lugar de i, necesito entonces crear otra fecha.
 
@@ -686,7 +689,7 @@ public class Date {
 
 		//esos dias que hay entre medias del primer dia de la primera semana del año y mi fecha los divido entre siete para saber las semanas que han sido (los ciclos completos) y el resto que es el dia de la semana en el que estoy realmente (la posicion en el ciclo siguiente) que será el que meteré en el otro método y me dirá a qué día de la semana se corresponde.
 
-		System.out.println("hoy es: "+NombreDia(diaSemana));
+		System.out.println("hoy es: "+NombreDelDia(diaSemana));
 		
 		
 	}
