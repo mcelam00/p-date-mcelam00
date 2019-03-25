@@ -6,8 +6,8 @@ public class MainDate {
 
 		Date today, otraFecha; //declaro la variable de tipo date, la inicializare en el try
 		try {
-			today = new Date(25,2,2019);// aquí las inicializo 
-			otraFecha = new Date(25,2,2019);
+			today = new Date(25,3,2019);// aquí las inicializo 
+			otraFecha = new Date(25,3,2019);
 			System.out.println("¿Tienen el mismo año?");
 			System.out.println(today.isSameYearIF(otraFecha));
 															

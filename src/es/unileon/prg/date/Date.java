@@ -111,7 +111,7 @@ public class Date {
 
 		boolean esMismoDia;
 
-		if(this.day == fecha2.year){
+		if(this.day == fecha2.day){
 			esMismoDia = true;
 		}
 		else
