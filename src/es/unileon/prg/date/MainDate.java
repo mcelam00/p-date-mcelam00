@@ -38,32 +38,51 @@ public class MainDate {
 			
 			System.out.println("Nombre del mes");
 			System.out.println(today.nombreMes());
+			System.out.println();
+			System.out.println();
 			
 			System.out.println("Es el dia correcto");
 			System.out.println(today.esCorrectoDiaMes());
-		
+			System.out.println();
+			System.out.println();
+
 			System.out.println("Estación");
 			System.out.println(today.estacion());
+			System.out.println();
+			System.out.println();
 			
 			System.out.println("Meses Restantes");
 			System.out.println(today.mesesRestantes());
+			System.out.println();
+			System.out.println();
 
 			System.out.println("Imprimir fecha");
 			today.fechaEscrita();
-			
+			System.out.println();
+			System.out.println();
+
 			System.out.println("Fechas hasta la ultima fecha del mes.");
 			today.ultimaFechaMes();
+			System.out.println();
+			System.out.println();
 
 			System.out.println("Meses con el mismo número de días");
 			today.mesesIguales();
+			System.out.println();
+			System.out.println();
 
 			
 			today.numeroDiasDesdeInicioAño();
+			System.out.println();
+			System.out.println();
 
 			today.numeroIntentos();
-
+			System.out.println();
+			System.out.println();
 		
 			today.numeroIntentosDW();
+			System.out.println();
+			System.out.println();
 
 			System.out.println("¿Qué día de la semana es hoy?");
 			today.DiaSemanaHoy(2);
